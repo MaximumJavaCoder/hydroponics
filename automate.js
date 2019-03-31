@@ -1,4 +1,23 @@
 var outputs = require('./outputs');
+const lightStart = 2;
+const lightCycle = 12;
+const firstCycle = 2;
+const cycleNum = 6;
+
+var lightEnd = lightStart+lightCycle;
+var x = cycleNum - 1;
+var cycleHours = Math.Round(24/cycleNum);
+var cycleLength = 24*60*60*1000/cycleNum;
+var rest = cycleLength - 1860000; //cycle length minus time to cycle all pumps
+var cycleTimes = [];
+var t = new Date();
+
+
+
+while(x>=0){
+	cycleTimes.push(firstCycle = (x*cycleHours))
+	x--
+}
 
 module.exports = class Automate{
 	constructor(){
@@ -10,43 +29,47 @@ module.exports = class Automate{
 	}
 	start(){
 		//flash green
-		this.light();
-		if(!this.started){
-			//this.light();
-			var water =()=> {
-		   		//flood plants
-		   		outputs.pumpOn();
-		   		this.waterOn = setTimeout(function test2() {
-		   			//turn off pump
-		   			outputs.pumpOff();
-		   		},10*60*1000); //10*60*1000);		// 10 minutes
+		let testCycle = setInterval( function(){
+			if (cycleTimes.includes(dt.getHours())){
+				console.log ('true');
+				this.light();
+				if(!this.started){
+					//this.light();
+					var water =()=> {
+				   		//flood plants
+				   		outputs.cycleAllPumps();
+						this.started = true;
+					}
+					water();
+					this.waterOn = setInterval(water, rest);
+					clearInterval(testCycle);
+				}
 			}
-			water();
-			this.waterInterval=setInterval(water, 6 * 60 * 60 * 1000); // 6 hour
-			this.started = true;
-		}
+		}, 30*1000);//time to test for cycle times
 		
 	}
 	light(){
 		this.lightInterval = setInterval(function () {
-			var dt = new Date();
-			dt = dt.getTime();
-			if(dt.getHour()>5&&dt.getHour()<8&&!this.lightson){
+			var dt = new Date(); < moved up top
+		
+			dt = dt.getTime(); // is this line necessary?
+
+			if(dt.getHours()>=lightStart&&dt.getHours()<lightEnd&&!this.lightson){
 				clearInterval(this.lightInterval);
 				outputs.lightsOn();
-				this.lightson= true;
+				this.lightson = true;
 				this.lightInterval = setTimeout(function() {
 		   			//turn off light
 		   			outputs.lightOff();
 		   			this.lightson = false;
-		   		}, 16*60*60*1000);	
+		   		}, lightCycle*60*60*1000);	
 			}
-		}, 45 * 60 * 1000); // 45 minute
+		}, 30 * 60 * 1000); // 45 minute
 	}
 	stop(){
 		//flash red
 		clearInterval(this.lightInterval);
-		setInterval(this.waterInterval);
+		setInterval(this.waterInterval); //is this suppose to be a clear interval as well?
 		outputs.pumpOff();
 		outputs.lightsOff();
 		this.started = false;
