@@ -1,27 +1,27 @@
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
-var lights = new Gpio(21, 'out'); //use GPIO pin 4, and specify that it is output
-var pumpOne = new Gpio(20, 'out');
-var pumpTwo = new Gpio(19, 'out');
-var pumpThree = new Gpio(18, 'out');
+var lights = new Gpio(13, 'out'); //use GPIO pin 4, and specify that it is output
+var pumpOne = new Gpio(4, 'out');
+var pumpTwo = new Gpio(5, 'out');
+var pumpThree = new Gpio(6, 'out');
 
 
 module.exports.lightsOn = function(){
 	//turn lights on
 	console.log("Lights On");
-	lights.writeSync(0);
+	lights.writeSync(1);
 }
 module.exports.lightsOff = function(){
 	//turn lights on
 	console.log("Lights Off");
-	lights.writeSync(1);
+	lights.writeSync(0);
 }
 
 module.exports.pumpOn = function(pump, onDuration){
 	//turn pumps on
-	pump.writeSync(0);
+	pump.writeSync(1);
 	this.waterOn = setTimeout(function test2() {
 		   			//turn off pump
-	pump.writeSync(1);
+	pump.writeSync(0);
 		},onDuration*60*1000);
 }
 
