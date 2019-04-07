@@ -29,10 +29,10 @@ module.exports.pumpOn = function(pump, onDuration){
 module.exports.cycleAllPumps = function(){
 	console.log("pump cycle");
 	pumpOn(pumpOne, 3);
-	this.waterOn = setTimeout(function test2() {
+	setTimeout(function() {
 	pumpOn(pumpTwo, 3);
 	},20*60*1000);
-	this.waterOn = setTimeout(function test2() {
+	setTimeout(function() {
 	pumpOn(pumpThree, 5);
 	},20*60*1000);
 }
