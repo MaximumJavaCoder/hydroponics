@@ -6,7 +6,7 @@ const cycleNum = 6;
 
 var lightEnd = lightStart+lightCycle;
 var x = cycleNum - 1;
-var cycleHours = Math.Round(24/cycleNum);
+var cycleHours = Math.round(24/cycleNum);
 var cycleLength = 24*60*60*1000/cycleNum;
 var rest = cycleLength - 1860000; //cycle length minus time to cycle all pumps
 var cycleTimes = [];
@@ -15,7 +15,7 @@ var t = new Date();
 
 
 while(x>=0){
-	cycleTimes.push(firstCycle = (x*cycleHours))
+	cycleTimes.push(firstCycle + (x*cycleHours))
 	x--
 }
 
