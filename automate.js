@@ -10,7 +10,7 @@ var cycleHours = Math.round(24/cycleNum);
 var cycleLength = 24*60*60*1000/cycleNum;
 var rest = cycleLength - 1860000; //cycle length minus time to cycle all pumps
 var cycleTimes = [];
-var t = new Date();
+var dt = new Date();
 
 
 
