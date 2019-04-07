@@ -12,6 +12,10 @@ var rest = cycleLength - 1860000; //cycle length minus time to cycle all pumps
 var cycleTimes = [];
 var dt = new Date();
 
+while(x>=0){
+cycleTimes.push(firstCycle + (x*cycleHours))
+	x--
+}
 
 module.exports = class Automate{
 	constructor(){
@@ -22,10 +26,6 @@ module.exports = class Automate{
 		this.waterOn;
 	}
 	start(){
-		while(x>=0){
-		cycleTimes.push(firstCycle + (x*cycleHours))
-			x--
-		}
 		//flash green
 		let testCycle = setInterval( function(){
 			if (cycleTimes.includes(dt.getHours())){
