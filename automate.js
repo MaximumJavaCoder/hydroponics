@@ -13,12 +13,6 @@ var cycleTimes = [];
 var dt = new Date();
 
 
-
-while(x>=0){
-	cycleTimes.push(firstCycle + (x*cycleHours))
-	x--
-}
-
 module.exports = class Automate{
 	constructor(){
 		this.started = false;
@@ -28,6 +22,10 @@ module.exports = class Automate{
 		this.waterOn;
 	}
 	start(){
+		while(x>=0){
+		cycleTimes.push(firstCycle + (x*cycleHours))
+			x--
+		}
 		//flash green
 		let testCycle = setInterval( function(){
 			if (cycleTimes.includes(dt.getHours())){
