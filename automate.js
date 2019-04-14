@@ -43,7 +43,7 @@ module.exports = class Automate{
 					water();
 					this.waterOn = setInterval(water, rest);
 					clearInterval(testCycle);
-					setInterval(()=>{}, 60*1000)
+					setInterval(()=>{}, 60*1000);
 				}
 			}
 		}, 30*1000);//time to test for cycle times

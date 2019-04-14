@@ -16,25 +16,25 @@ module.exports.lightsOff = function(){
 	lights.writeSync(0);
 }
 
-var pumpOn = function(pump, onDuration){
+var pumpOn = function(pump, onDuration, number){
 	//turn pumps on
-	console.log("pump " + pump +" on");
+	console.log("pump " + number +" on");
 	pump.writeSync(1);
 	this.waterOn = setTimeout(function test2() {
 		//turn off pump
 		pump.writeSync(0);
-		console.log("pump " + pump +" off");
+		console.log("pump " + number +" off");
 		},onDuration*60*1000);
 }
 
 
 module.exports.cycleAllPumps = function(){
 	console.log("pump cycle");
-	pumpOn(pumpOne, 3);
+	pumpOn(pumpOne, 3, 1);
 	setTimeout(function() {
-	pumpOn(pumpTwo, 3);
+	pumpOn(pumpTwo, 3, 2);
 	},20*60*1000);
 	setTimeout(function() {
-	pumpOn(pumpThree, 5);
+	pumpOn(pumpThree, 5, 3);
 	},40*60*1000);
 }
