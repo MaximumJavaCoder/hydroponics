@@ -16,12 +16,14 @@ module.exports.lightsOff = function(){
 	lights.writeSync(0);
 }
 
-module.exports.pumpOn = function(pump, onDuration){
+var pumpOn = function(pump, onDuration){
 	//turn pumps on
+	console.log("pump " + pump +" on");
 	pump.writeSync(1);
 	this.waterOn = setTimeout(function test2() {
-		   			//turn off pump
-	pump.writeSync(0);
+		//turn off pump
+		pump.writeSync(0);
+		console.log("pump " + pump +" off");
 		},onDuration*60*1000);
 }
 
@@ -34,5 +36,5 @@ module.exports.cycleAllPumps = function(){
 	},20*60*1000);
 	setTimeout(function() {
 	pumpOn(pumpThree, 5);
-	},20*60*1000);
+	},40*60*1000);
 }
