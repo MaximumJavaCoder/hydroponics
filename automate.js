@@ -48,7 +48,7 @@ module.exports = class Automate{
 	}
 	light(){
 		this.lightInterval = setInterval(function () {
-			var dt = new Date(); < moved up top
+			var dt = new Date(); // moved up top
 		
 			dt = dt.getTime(); // is this line necessary?
 
