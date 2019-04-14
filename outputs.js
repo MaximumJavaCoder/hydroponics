@@ -1,8 +1,8 @@
 var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
 var lights = new Gpio(13, 'out'); //use GPIO pin 4, and specify that it is output
-var pumpOne = new Gpio(4, 'out');
+var pumpOne = new Gpio(6, 'out');
 var pumpTwo = new Gpio(5, 'out');
-var pumpThree = new Gpio(6, 'out');
+var pumpThree = new Gpio(4, 'out');
 
 
 module.exports.lightsOn = function(){
@@ -30,11 +30,11 @@ var pumpOn = function(pump, onDuration, number){
 
 module.exports.cycleAllPumps = function(){
 	console.log("pump cycle");
-	pumpOn(pumpOne, 3, 1);
+	pumpOn(pumpOne, 1, 1);
 	setTimeout(function() {
-	pumpOn(pumpTwo, 3, 2);
+	pumpOn(pumpTwo, 1, 2);
 	},20*60*1000);
 	setTimeout(function() {
-	pumpOn(pumpThree, 5, 3);
+	pumpOn(pumpThree, 2, 3);
 	},40*60*1000);
 }
