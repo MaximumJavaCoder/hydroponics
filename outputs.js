@@ -24,17 +24,17 @@ var pumpOn = function(pump, onDuration, number){
 		//turn off pump
 		pump.writeSync(0);
 		console.log("pump " + number +" off");
-		},onDuration*60*1000);
+		},onDuration*1000);
 }
 
 
 module.exports.cycleAllPumps = function(){
 	console.log("pump cycle");
-	pumpOn(pumpOne, 1, 1);
+	pumpOn(pumpOne, 180, 1);
 	setTimeout(function() {
-	pumpOn(pumpTwo, 1, 2);
+	pumpOn(pumpTwo, 120, 2);
 	},20*60*1000);
 	setTimeout(function() {
-	pumpOn(pumpThree, 2, 3);
+	pumpOn(pumpThree, 90, 3);
 	},40*60*1000);
 }
