@@ -2,7 +2,7 @@ var outputs = require('./outputs');
 const lightStart = 2;
 const lightCycle = 12;
 const firstCycle = 2;
-const cycleNum = 6;
+const cycleNum = 4;
 
 var lightEnd = lightStart+lightCycle;
 var x = cycleNum - 1;
@@ -66,7 +66,7 @@ module.exports = class Automate{
 	   			this.light();
 		   	}, lightCycle*60*60*1000);
 			}
-		}, 30 * 60 * 1000); // 45 minute
+		}, 10 * 60 * 1000); // 45 minute
 	}
 	stop(){
 		//flash red
